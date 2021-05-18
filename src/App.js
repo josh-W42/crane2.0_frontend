@@ -6,8 +6,9 @@ import setAuthToken from './utils/setAuthToken';
 import io from 'socket.io-client';
 import axios from "axios";
 
-import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
-import CssBaseline from '@material-ui/core/CssBaseline';
+import { ThemeProvider } from 'styled-components';
+import { lightTheme, darkTheme } from './utils/theme';
+import { GlobalStyles } from './utils/global';
 
 // CSS
 import './App.css';
@@ -39,26 +40,15 @@ const PrivateRoute = ({ component: Component, ...rest }) => {
   }} />
 };
 
-// finds the theme preference if they set it before.
-const themePreference = () => {
-  if (localStorage.getItem('theme')) {
-    return localStorage.getItem('theme') === 'Dark' ? true : false;
-  }
-  return false
-}
-
 function App() {
   // Set state values
 
   const [currentUser, setCurrentUser] = useState('');
   const [isAuthenticated, setIsAuthenticated] = useState(true);
-  const [darkModeEnabled, setDarkModeEnabled] = useState(themePreference());
+  const [theme, setTheme] = useState('dark');
  
   useEffect(() => {
-    // We can check if a user is authenticated if there is a token avalible in localstorage
-    // We do this every time the app is mounted.
     let token;
-
     const localToken = localStorage.getItem('jwtToken');
 
     if (!localToken) {
@@ -100,21 +90,11 @@ function App() {
     }
   }
 
-  // Themeing
-  const theme = React.useMemo(
-    () =>
-      createMuiTheme({
-        palette: {
-          type: darkModeEnabled ? 'dark' : 'light',
-        },
-      }),
-    [darkModeEnabled],
-  );
-
   return (
     <div className="App">
-      <ThemeProvider theme={theme}>
-        <Navbar handleLogout={handleLogout} isAuth={isAuthenticated} />
+      <ThemeProvider theme={theme === 'light' ? lightTheme : darkTheme}>
+        <GlobalStyles />
+        <Navbar theme={theme} handleLogout={handleLogout} isAuth={isAuthenticated} />
         <h1>MERN Authentication</h1>
         <div className="container mt-5">
           <Switch>
