@@ -96,7 +96,6 @@ function App() {
         <GlobalStyles />
         <div id="particles-js"></div>
         <Navbar theme={theme} setTheme={setTheme} handleLogout={handleLogout} isAuth={isAuthenticated} />
-        <h1>MERN Authentication</h1>
         <div className="container mt-5">
           <Switch>
             <Route path='/signup' component={Signup} />
@@ -105,7 +104,9 @@ function App() {
               render={(props) => <Login {...props} nowCurrentUser={nowCurrentUser} setIsAuthenticated={setIsAuthenticated} user={currentUser} />}
             />
             <PrivateRoute path="/profile" component={Profile} user={currentUser} handleLogout={handleLogout} />
-            <Route exact path="/" component={Home} /> 
+            <Route exact path="/" render={(props) => {
+              return <Home {...props} theme={theme} />
+            }} /> 
             <Route exact path="/about" component={About} /> 
           </Switch>
         </div>
