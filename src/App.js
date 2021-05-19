@@ -17,10 +17,10 @@ import './App.css';
 import Signup from './components/Signup';
 import Login from './components/Login';
 import Profile from  './components/Profile';
-import Navbar from './components/Navbar';
-import Welcome from './components/Welcome';
+import Navbar from './components/partials/Navbar';
+import Home from './components/Home';
 import About from './components/About';
-import Footer from './components/Footer';
+import Footer from './components/partials/Footer';
 
 const { REACT_APP_SERVER_URL, REACT_APP_SOCKET_URL } = process.env;
 
@@ -94,7 +94,8 @@ function App() {
     <div className="App">
       <ThemeProvider theme={theme === 'light' ? lightTheme : darkTheme}>
         <GlobalStyles />
-        <Navbar theme={theme} handleLogout={handleLogout} isAuth={isAuthenticated} />
+        <div id="particles-js"></div>
+        <Navbar theme={theme} setTheme={setTheme} handleLogout={handleLogout} isAuth={isAuthenticated} />
         <h1>MERN Authentication</h1>
         <div className="container mt-5">
           <Switch>
@@ -104,11 +105,11 @@ function App() {
               render={(props) => <Login {...props} nowCurrentUser={nowCurrentUser} setIsAuthenticated={setIsAuthenticated} user={currentUser} />}
             />
             <PrivateRoute path="/profile" component={Profile} user={currentUser} handleLogout={handleLogout} />
-            <Route exact path="/" component={Welcome} /> 
+            <Route exact path="/" component={Home} /> 
             <Route exact path="/about" component={About} /> 
           </Switch>
         </div>
-        <Footer />
+        <Footer theme={theme} />
       </ThemeProvider>
     </div>
   );

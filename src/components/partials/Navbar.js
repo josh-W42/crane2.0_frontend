@@ -1,6 +1,8 @@
 import React from 'react';
 import { NavLink, Link } from 'react-router-dom';
 import Navbar from 'react-bootstrap/Navbar';
+import Form from 'react-bootstrap/Form';
+import FormCheck from "react-bootstrap/FormCheck";
 
 import styled, { css } from 'styled-components';
 
@@ -9,13 +11,24 @@ import styled, { css } from 'styled-components';
 //     color: ${({ theme }) => theme.text};
 // `
 
-
 const TopNavbar = (props) => {
+
+  const handleThemeChange = () => {
+    props.setTheme(props.theme === 'light' ? 'dark' : 'light');
+  } 
+
   return (
     <Navbar bg={props.theme} variant={props.theme} expand="lg">
       <div className="container">
         <Link className="navbar-brand" to="/">
-          MERN Auth
+          <img
+            alt="crane logo"
+            src="https://res.cloudinary.com/dom5vocai/image/upload/v1613426540/crane_logo_xzo7cm.png"
+            width="30"
+            height="30"
+            className="d-inline-block align-top"
+          />{' '}
+          Crane
         </Link>
         <Navbar.Toggle aria-controls="topNav" />
         <Navbar.Collapse id="topNav">
@@ -63,6 +76,17 @@ const TopNavbar = (props) => {
                 </>
               )
             }
+            <li className="nav-item">
+              <Form className="nav-link">
+                <FormCheck
+                  type="switch"
+                  id="light-dark switch"
+                  checked={props.theme === 'light'}
+                  onChange={handleThemeChange}
+                  label={` ${props.theme.toUpperCase()} Theme`}
+                />
+              </Form>
+            </li>
           </ul>
         </Navbar.Collapse>
       </div>

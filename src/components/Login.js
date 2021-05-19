@@ -21,25 +21,19 @@ const Login = (props) => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-
+        // Get user data
         const userData = { email, password };
         try {
             const response = await axios.post(`${REACT_APP_SERVER_URL}/users/login`, userData);
-            console.log(response);
-
+            // obtain the token
             const { token } = response.data;
-            // Take th token from the response from the backend and put it
-            // The local storage of the user's browser. We do this because we 
-            // want to be able to get the token when a redirect occurs.
+            // store in localstorage
             localStorage.setItem('jwtToken', token);
-
-            // Ok and now we se the auth token
+            // set axios auth header
             setAuthToken(token);
-            // decode token to get the user data..
-            // So I'm guessing this is just decoding a user's session data from encryption.
+            // decode the json web token and store in App state
             const decoded = jwt_decode(token);
-            // thne set the currnet user.
-            props.nowCurrentUser(decoded); // function passed down from the props.
+            props.nowCurrentUser(decoded);
         } catch (error) {
             console.error(error);
             alert('Either Email or Password is incorrect.  Please try again.');
