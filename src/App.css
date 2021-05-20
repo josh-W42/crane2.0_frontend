@@ -27,3 +27,7 @@ body {
   height: 200px;
   margin: auto;
 }
+
+#homeContent {
+  opacity: 0.85;
+}

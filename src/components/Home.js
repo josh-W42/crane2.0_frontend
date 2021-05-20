@@ -1,4 +1,5 @@
 import React from 'react';
+import { NavLink, Link } from 'react-router-dom';
 
 import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
@@ -16,6 +17,7 @@ const Home = (props) => {
           variant="top"
           width="50"
           height="300"
+          alt="Crane Logo"
           src="https://res.cloudinary.com/dom5vocai/image/upload/v1613426540/crane_logo_xzo7cm.png"
         />
         <Card.Body>
@@ -25,8 +27,12 @@ const Home = (props) => {
           </Card.Text>
         </Card.Body>
         <Card.Footer className="d-flex justify-content-around">
-          <Button variant={props.theme === "light" ? "outline-dark" : "outline-light"}>Signup</Button>
-          <Button variant={props.theme === "light" ? "outline-dark" : "outline-light"}>Login</Button>
+          <NavLink className="nav-link" to="/signup">
+            <Button variant={props.theme === "light" ? "outline-dark" : "outline-light"}>Signup</Button>
+          </NavLink>
+          <NavLink className="nav-link" to="/login">
+            <Button variant={props.theme === "light" ? "outline-dark" : "outline-light"}>Login</Button>
+          </NavLink>
         </Card.Footer>
       </Card>
     </div>
