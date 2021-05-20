@@ -91,22 +91,45 @@ function App() {
 
   return (
     <div className="App">
-      <ThemeProvider theme={theme === 'light' ? lightTheme : darkTheme}>
+      <ThemeProvider theme={theme === "light" ? lightTheme : darkTheme}>
         <GlobalStyles />
         <div id="particles-js"></div>
-        <Navbar theme={theme} setTheme={setTheme} handleLogout={handleLogout} isAuth={isAuthenticated} />
+        <Navbar
+          theme={theme}
+          setTheme={setTheme}
+          handleLogout={handleLogout}
+          isAuth={isAuthenticated}
+        />
         <div className="container mt-5">
           <Switch>
-            <Route path='/signup' component={Signup} />
-            <Route 
+            <Route path="/signup" component={Signup} />
+            <Route
               path="/login"
-              render={(props) => <Login {...props} nowCurrentUser={nowCurrentUser} setIsAuthenticated={setIsAuthenticated} user={currentUser} />}
+              render={(props) => (
+                <Login
+                  {...props}
+                  nowCurrentUser={nowCurrentUser}
+                  setIsAuthenticated={setIsAuthenticated}
+                  user={currentUser}
+                  theme={theme}
+                />
+              )}
             />
-            <PrivateRoute path="/profile" component={Profile} user={currentUser} handleLogout={handleLogout} />
-            <Route exact path="/" render={(props) => {
-              return <Home {...props} theme={theme} />
-            }} /> 
-            <Route exact path="/about" component={About} /> 
+            <PrivateRoute
+              path="/profile"
+              component={Profile}
+              user={currentUser}
+              handleLogout={handleLogout}
+              theme={theme}
+            />
+            <Route
+              exact
+              path="/"
+              render={(props) => {
+                return <Home {...props} theme={theme} />;
+              }}
+            />
+            <Route exact path="/about" component={About} />
           </Switch>
         </div>
         <Footer theme={theme} />
