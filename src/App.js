@@ -14,12 +14,12 @@ import { GlobalStyles } from './utils/global';
 import './App.css';
 
 // Components
-import Signup from './components/Signup';
-import Login from './components/Login';
-import Profile from  './components/Profile';
+import Signup from './components/pages/Signup';
+import Login from './components/pages/Login';
+import Profile from  './components/pages/Profile';
 import Navbar from './components/partials/Navbar';
-import Home from './components/Home';
-import About from './components/About';
+import Home from './components/pages/Home';
+import About from './components/pages/About';
 import Footer from './components/partials/Footer';
 
 const { REACT_APP_SERVER_URL, REACT_APP_SOCKET_URL } = process.env;
@@ -32,10 +32,9 @@ const socket = io(REACT_APP_SOCKET_URL, {
 });
 
 const PrivateRoute = ({ component: Component, ...rest }) => {
+  // Protected Routes For Authorized Users;
   let token = localStorage.getItem('jwtToken');
   return <Route {...rest} render={(props) => {
-    // Ok so basically this is saying if there is a token AKA
-    // If they are logged in we route 
     return token ? <Component {...rest} {...props} /> : <Redirect to="/login"/>;
   }} />
 };

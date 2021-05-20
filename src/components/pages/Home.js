@@ -6,9 +6,9 @@ import Button from "react-bootstrap/Button";
 
 const Home = (props) => {
   return (
-    <div id="homeContent">
+    <div className="col-md-4 col-lg-3 m-auto" id="homeContent">
       <Card
-        className="col-md-4 col-lg-3 m-auto text-center"
+        className="text-center"
         bg={props.theme}
         text={props.theme === "light" ? "dark" : "white"}
       >

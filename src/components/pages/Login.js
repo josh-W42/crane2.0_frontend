@@ -3,7 +3,9 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import jwt_decode from 'jwt-decode';
 import { Redirect } from 'react-router-dom';
-import setAuthToken from '../utils/setAuthToken';
+
+import setAuthToken from '../../utils/setAuthToken';
+
 const { REACT_APP_SERVER_URL } = process.env;
 
 const Login = (props) => {
