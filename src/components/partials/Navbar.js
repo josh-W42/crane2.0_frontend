@@ -1,15 +1,9 @@
 import React from 'react';
 import { NavLink, Link } from 'react-router-dom';
+
 import Navbar from 'react-bootstrap/Navbar';
 import Form from 'react-bootstrap/Form';
 import FormCheck from "react-bootstrap/FormCheck";
-
-import styled, { css } from 'styled-components';
-
-// const Nav = styled.nav`
-//     background: ${({ theme }) => theme.body};
-//     color: ${({ theme }) => theme.text};
-// `
 
 const TopNavbar = (props) => {
 
@@ -78,12 +72,12 @@ const TopNavbar = (props) => {
             }
             <li className="nav-item">
               <Form className="nav-link">
-                <FormCheck
+                <Form.Check
                   type="switch"
-                  id="light-dark switch"
+                  label={`-${props.theme.toUpperCase()} Theme`}
+                  id="light-dark-switch"
                   checked={props.theme === 'light'}
                   onChange={handleThemeChange}
-                  label={` ${props.theme.toUpperCase()} Theme`}
                 />
               </Form>
             </li>
