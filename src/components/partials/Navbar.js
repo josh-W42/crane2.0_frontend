@@ -3,12 +3,12 @@ import { NavLink, Link } from 'react-router-dom';
 
 import Navbar from 'react-bootstrap/Navbar';
 import Form from 'react-bootstrap/Form';
-import FormCheck from "react-bootstrap/FormCheck";
 
 const TopNavbar = (props) => {
 
   const handleThemeChange = () => {
     props.setTheme(props.theme === 'light' ? 'dark' : 'light');
+    props.createNotification(props.theme === 'light' ? 'Switched to Dark Mode' : 'Switched to Light Mode');
   } 
 
   return (
@@ -48,7 +48,7 @@ const TopNavbar = (props) => {
                   </li>
                   <li className="nav-item">
                     <span
-                      className="nav-link logut-link"
+                      className="nav-link logout-link"
                       onClick={props.handleLogout}
                     >
                       Logout
