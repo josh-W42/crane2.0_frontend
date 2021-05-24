@@ -158,7 +158,9 @@ function App() {
           aria-live="polite"
           aria-atomic="true"
           style={{
-            position: 'relative',
+            top: 100,
+            right: 0,
+            position: 'absolute',
             minHeight: '200px',
           }}
         >
