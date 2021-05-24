@@ -8,7 +8,6 @@ import setAuthToken from "../../utils/setAuthToken";
 import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
 import Form from 'react-bootstrap/Form';
-import FormCheck from "react-bootstrap/FormCheck";
 
 const { REACT_APP_SERVER_URL } = process.env;
 
@@ -25,6 +24,7 @@ const Login = (props) => {
   };
 
   const handleSubmit = async (e) => {
+  
     e.preventDefault();
     // Get user data
     const userData = { email, password };
@@ -64,7 +64,7 @@ const Login = (props) => {
             </div>
 
             <Form.Group className="form-group mb-3" controlId="email">
-              <Form.Label>Email address</Form.Label>
+              <Form.Label>Email Address</Form.Label>
               <Form.Control
                 type="email"
                 name="email"
@@ -72,6 +72,7 @@ const Login = (props) => {
                 onChange={handleEmail}
                 placeholder="Enter email"
                 className="form-control"
+                required
               />
             </Form.Group>
 
@@ -84,6 +85,7 @@ const Login = (props) => {
                 onChange={handlePassword}
                 placeholder="Password"
                 className="form-control"
+                required
               />
             </Form.Group>
 

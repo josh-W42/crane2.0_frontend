@@ -2,7 +2,6 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 const Profile = (props) => {
-//    const {} = props;
     const { handleLoggout, user } = props;
     const { id, name, email, exp } = user;
     const expirationTime = new Date(exp * 1000);
