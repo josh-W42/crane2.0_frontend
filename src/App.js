@@ -82,17 +82,18 @@ function App() {
   /**
    Creates A Toast Notification:
    @param {String} message The content of the notification.
+   @param {String} type The type of message ie. success, danger, warning, info. Default is dark
    */
-  const createNotification = (message) => {
-    setNotifications(notifications.concat([{ message }]));
+  const createNotification = (message, type = "info") => {
+    setNotifications(notifications.concat([{ message, type }]));
   }
   
   const toastArray = notifications.map((notification, i) => {
-
     return (
       <Notification
         key={`toast-${i}`}
         message={notification.message}
+        type={notification.type}
       />
     );
   });
@@ -124,7 +125,16 @@ function App() {
         />
         <div className="container mt-5">
           <Switch>
-            <Route path="/signup" component={Signup} />
+            <Route                
+              path="/signup"
+              render={(props) => (
+                <Signup
+                  {...props}
+                  user={currentUser}
+                  theme={theme}
+                />
+              )}
+            />
             <Route
               path="/login"
               render={(props) => (
